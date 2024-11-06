@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static-website-deployment
+  labels:
+    app: static-website
+spec:
+  replicas: 1  # Number of pods to run
+  selector:
+    matchLabels:
+      app: static-website
+  template:
+    metadata:
+      labels:
+        app: static-website
+    spec:
+      containers:
+        - name: apache-container
+          image: httpd:latest  # Official Apache HTTP Server image
+          ports:
+            - containerPort: 8049  # Container listening on port 8049
+          volumeMounts:
+            - name: website-content
+              mountPath: /usr/local/apache2/htdocs  # Default location for Apache static content
+      volumes:
+        - name: website-content
+          configMap:
+            name: static-website-configmap  # Name of the ConfigMap holding static content

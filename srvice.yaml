@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: static-website-service
+spec:
+  selector:
+    app: static-website  # Matches the deployment labels
+  ports:
+    - protocol: TCP
+      port: 80  # External port on which the service will be available
+      targetPort: 8049  # The port inside the container where Apache is listening
+  type: LoadBalancer  # Exposes the service externally via a cloud load balancer
