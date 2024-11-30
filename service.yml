@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: static-website-service
+spec:
+  selector:
+    app: static-website
+  ports:
+    - protocol: TCP
+      port: 80  # External port accessible within the cluster
+      targetPort: 8081  # Container port exposed by the app
+  type: LoadBalancer  # You can change this to ClusterIP if it's internal or NodePort if needed
