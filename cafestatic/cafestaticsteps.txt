@@ -30,7 +30,7 @@ add build step-> Docker Build and Publish
 ->tag- v1
 -> registry credentials-(choose docker credentials) 
 Add build step -> Execute shell
-docker run -it -d 8001:8081 vijeth2001/staticapp
+docker run -it -d 8001:80 vijeth2001/staticapp
 save and build
 
 go to browser and type localhost:8001
